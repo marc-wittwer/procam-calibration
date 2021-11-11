@@ -61,8 +61,10 @@ class MainWindow:
                 self.canvas.itemconfig(self.image_on_screen, image=self.pattern_images[self.current_pattern_number])
                 self.window.update()
                 print('Take photo')
+                sleep(2)
                 self.take_photo()
-                sleep(3)
+                sleep(2)
+
                 self.current_pattern_number += 1
 
         if event.char == 'a':

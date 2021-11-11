@@ -2,6 +2,10 @@
 
 This repository provides python scripts to calibrate projector-camera system using a chessboard and structured light (the gray codes).
 
+## Calibration script command:
+```
+python ./calibrate.py 720 1280 8 11 24 1 -black_thr 40 -white_thr 5
+``` 
 ## Requirement
 
 * Python

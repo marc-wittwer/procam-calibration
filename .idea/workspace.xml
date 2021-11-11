@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf0c9d7-5ec8-4a5d-8b5c-107838caea32" name="Changes" comment="" />
+    <list default="true" id="bdf0c9d7-5ec8-4a5d-8b5c-107838caea32" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/camera_calibration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calibrate.py" beforeDir="false" afterPath="$PROJECT_DIR$/calibrate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_data/calibration_result.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sample_data/calibration_result.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/take_photos.py" beforeDir="false" afterPath="$PROJECT_DIR$/take_photos.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,10 +56,34 @@
       <workItem from="1635867569589" duration="2272000" />
       <workItem from="1636019021001" duration="12228000" />
       <workItem from="1636364003814" duration="427000" />
+      <workItem from="1636365015427" duration="1055000" />
+      <workItem from="1636368717264" duration="12874000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/calibrate.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -107,6 +107,7 @@ def calibrate(dirnames, gc_fname_lists, proj_shape, chess_shape, chess_block_siz
 
     cam_shape = cv2.imread(gc_fname_lists[0][0], cv2.IMREAD_GRAYSCALE).shape
     patch_size_half = int(np.ceil(cam_shape[1] / 180))
+    # patch_size_half = 2
     print('  patch size :', patch_size_half * 2 + 1)
 
     cam_corners_list = []
@@ -114,6 +115,7 @@ def calibrate(dirnames, gc_fname_lists, proj_shape, chess_shape, chess_block_siz
     cam_corners_list2 = []
     proj_objps_list = []
     proj_corners_list = []
+    cnt = 0
     for dname, gc_filenames in zip(dirnames, gc_fname_lists):
         print('  checking \'' + dname + '\'')
         if len(gc_filenames) != graycode.getNumberOfPatternImages() + 2:
@@ -141,7 +143,7 @@ def calibrate(dirnames, gc_fname_lists, proj_shape, chess_shape, chess_block_siz
         proj_objps = []
         proj_corners = []
         cam_corners2 = []
-        # viz_proj_points = np.zeros(proj_shape, np.uint8)
+        viz_proj_points = np.zeros(proj_shape, np.uint8)
         for corner, objp in zip(cam_corners, objps):
             c_x = int(round(corner[0][0]))
             c_y = int(round(corner[0][1]))
@@ -157,10 +159,15 @@ def calibrate(dirnames, gc_fname_lists, proj_shape, chess_shape, chess_block_siz
                     if not err:
                         src_points.append((x, y))
                         dst_points.append(gc_step*np.array(proj_pix))
+
+            # print('src points',len(src_points))
+            # print('dst points',len(dst_points))
+            # print('patch_size_half', patch_size_half**2)
             if len(src_points) < patch_size_half**2:
+            # if len(src_points) < 4:
                 print(
-                    '    Warning : corner', c_x, c_y,
-                    'was skiped because decoded pixels were too few (check your images and threasholds)')
+                '    Warning : corner', c_x, c_y,
+                'was skiped because decoded pixels were too few (check your images and threasholds)')
                 continue
             h_mat, inliers = cv2.findHomography(
                 np.array(src_points), np.array(dst_points))
@@ -169,8 +176,8 @@ def calibrate(dirnames, gc_fname_lists, proj_shape, chess_shape, chess_block_siz
             proj_objps.append(objp)
             proj_corners.append([point_pix])
             cam_corners2.append(corner)
-            # viz_proj_points[int(round(point_pix[1])),
-            #                 int(round(point_pix[0]))] = 255
+            viz_proj_points[int(round(point_pix[1])),
+                            int(round(point_pix[0]))] = 255
         if len(proj_corners) < 3:
             print('Error : too few corners were found in \'' +
                   dname + '\' (less than 3)')
@@ -178,9 +185,9 @@ def calibrate(dirnames, gc_fname_lists, proj_shape, chess_shape, chess_block_siz
         proj_objps_list.append(np.float32(proj_objps))
         proj_corners_list.append(np.float32(proj_corners))
         cam_corners_list2.append(np.float32(cam_corners2))
-        # cv2.imwrite('visualize_corners_projector_' +
-        #             str(cnt) + '.png', viz_proj_points)
-        # cnt += 1
+        cv2.imwrite('visualize_corners_projector_' +
+                    str(cnt) + '.png', viz_proj_points)
+        cnt += 1
 
     print('Initial solution of camera\'s intrinsic parameters')
     cam_rvecs = []
